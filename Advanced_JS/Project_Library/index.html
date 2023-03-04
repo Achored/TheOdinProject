@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ 
+<button id="newBookBtn">New Book</button>
+
+<form id="bookForm" style = "display: none;">
+  <input type="text" id="titleInput" placeholder="Title">
+  <input type="text" id="authorInput" placeholder="Author">
+  <input type="text" id="pagesInput" placeholder="Number of Pages">
+  <select id="statusInput">
+    <option value="not read">Not Read</option>
+    <option value="read">Read</option>
+  </select>
+  <button type="submit" id="submitBtn">Add Book</button>
+  <button id="removeButton" style="display:none;">Remove</button>
+</form>
+
+<div id="libraryContainer">
+</div>
+<script src="script.js"></script>
+
+</body>
+
+</html>
