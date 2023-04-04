@@ -168,4 +168,3 @@ function turnChecker() {
     }
   }
 }
-1
