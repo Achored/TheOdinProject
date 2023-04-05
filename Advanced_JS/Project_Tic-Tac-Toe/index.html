@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>Tic-Tac-Toe</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -12,30 +12,43 @@
   <button id="play">Play Tic-Tac-Toe</button>
 
         <div id = "players" class="players">
+
           <div id ="player1" class="player-content">
             <h2>Player 1</h2>
-            Name: <input type="text" id="player1-name">
-            <button id="next">Next</button>
-            <button id="vs-AI">Play with AI</button>
+            <input type="text" id="player1-name" placeholder="name">
+            <div class = "buttons">
+              <button id="next">Next</button>
+              <button id="vs-AI">Play with AI</button>
+            </div>
           </div>
+
           <div id="player2" class="player-content">
             <h2> Player 2</h2>
-            <input type="text" id="player2-name">
+            <input type="text" id="player2-name" placeholder="name">
+            <button id="back">Back</button>
             <button id="start">Start Game</button>
           </div>
+
         </div> 
   
         <div id = "game">
-          <button class = "ttt" id="button0">0</button>
-          <button class = "ttt" id="button1">1</button>
-          <button class = "ttt" id="button2">2</button>
-          <button class = "ttt" id="button3">3</button>
-          <button class = "ttt" id="button4">4</button>
-          <button class = "ttt" id="button5">5</button>
-          <button class = "ttt" id="button6">6</button>
-          <button class = "ttt" id="button7">7</button>
-          <button class = "ttt" id="button8">8</button>
-        </div>
+          <div>
+            <button class = "row1 playb" id="button0"></button>
+            <button class = "row1 playb" id="button1"></button>
+            <button class = "row1 playb" id="button2"></button>
+          </div>
+
+          <div>
+            <button class = "row2 playb" id="button3"></button>
+            <button class = "row2 playb" id="button4"></button>
+            <button class = "row2 playb" id="button5"></button>
+          </div>
+
+          <div>
+            <button class = "row3 playb" id="button6"></button>
+            <button class = "row3 playb" id="button7"></button>
+            <button class = "row3 playb" id="button8"></button>
+         <div>
 
         <script src="script.js"></script>
 

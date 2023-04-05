@@ -16,6 +16,7 @@ var vsAI = document.getElementById("vs-AI");
 
 // Player 2 Div buttons
 
+var back = document.getElementById("back");
 var start = document.getElementById("start");
 
 // Tic tac toe div
@@ -34,10 +35,12 @@ var button6 = document.getElementById("button6");
 var button7 = document.getElementById("button7");
 var button8 = document.getElementById("button8");
 
+let i = 0;
+
 
 // Functions to hide and show a Player 1 or Player 2 div
 show = (show) => {
-    show.style.display = "block";
+    show.style.display = "flex";
 }
 
 hide = (hide) =>{
@@ -76,95 +79,35 @@ start.addEventListener("click", function(event){
   hide(play_btn);
 });
 
-//
-
-button0.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button0.textContent = "X";
-  } else {
-    button0.textContent = "O";
-  }
-});
-
-button1.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button1.textContent = "X";
-  } else {
-    button1.textContent = "O";
-  }
-});
-
-button2.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button2.textContent = "X";
-  } else {
-    button2.textContent = "O";
-  }
-});
-
-button3.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button3.textContent = "X";
-  } else {
-    button3.textContent = "O";
-  }
-});
-
-button4.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button4.textContent = "X";
-  } else {
-    button4.textContent = "O";
-  }
-});
-
-button5.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button5.textContent = "X";
-  } else {
-    button5.textContent = "O";
-  }
-});
-
-button6.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button6.textContent = "X";
-  } else {
-    button6.textContent = "O";
-  }
-});
-
-button7.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button7.textContent = "X";
-  } else {
-    button7.textContent = "O";
-  }
-});
-
-button8.addEventListener("click", function(event){
-  let i = turnChecker();
-  if (i % 2 === 0) {
-    button8.textContent = "X";
-  } else {
-    button8.textContent = "O";
-  }
+back.addEventListener("click", function(event){
+  show(players);
+  show(player1);
+  hide(player2);
 });
 
 
-function turnChecker() {
-  for (let i = 0; i <= 8; i++) {
-    if (buttons.addEventListener("click", function(event) {})) {
-      i++;
-      return i;
-    }
+checkTurn = (button) => {
+  if  (i % 2 == 0) {
+    button.textContent = "X";
   }
+  else {
+    button.textContent = "O";;
+  }
+}
+
+ifClicked = (button) => {
+  if (button.textContent == "X" || button.textContent == "O") {
+    alert("Button already clicked. Choose another one.");
+  }
+  else {
+    checkTurn(button);
+   
+  }
+}
+
+for (let j = 0; j < buttons.length; j++) {
+  buttons[j].addEventListener("click", function() {
+    ifClicked(buttons[j]);
+    i = i + 1;
+  });
 }
