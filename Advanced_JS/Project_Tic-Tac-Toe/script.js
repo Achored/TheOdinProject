@@ -24,7 +24,6 @@ var game =document.getElementById("game");
 var buttons = game.getElementsByTagName("button");
 
 // Tic tac toe buttons
-var buttonClass = document.getElementsByClassName("ttt")
 var button0 = document.getElementById("button0");
 var button1 = document.getElementById("button1");
 var button2 = document.getElementById("button2");
@@ -36,7 +35,6 @@ var button7 = document.getElementById("button7");
 var button8 = document.getElementById("button8");
 
 let i = 0;
-
 
 // Functions to hide and show a Player 1 or Player 2 div
 show = (show) => {
@@ -58,8 +56,13 @@ play_btn.addEventListener("click", function(event){
 // Button to input player 2 details
 
 next_btn.addEventListener("click", function(event){
-  hide(player1);
-  show(player2);
+ 
+  if (player1_name.value != ""){
+    show(player2);
+    hide(player1);
+  }
+  else {
+    alert("Please input a value.");}
 });
 
 
@@ -74,9 +77,14 @@ vsAI.addEventListener("click", function(event){
 // Starts the game and show the tic tac toe division
 
 start.addEventListener("click", function(event){
-  hide(players);
-  show(game);
-  hide(play_btn);
+  if (player2_name.value != ""){
+    hide(players);
+    hide(play_btn);
+    show(game);
+    
+  }
+  else {
+    alert("Please input a value.");}
 });
 
 back.addEventListener("click", function(event){
@@ -87,11 +95,11 @@ back.addEventListener("click", function(event){
 
 
 checkTurn = (button) => {
-  if  (i % 2 == 0) {
+  if  (i % 2 === 0) {
     button.textContent = "X";
   }
   else {
-    button.textContent = "O";;
+    button.textContent = "O";
   }
 }
 
@@ -109,5 +117,48 @@ for (let j = 0; j < buttons.length; j++) {
   buttons[j].addEventListener("click", function() {
     ifClicked(buttons[j]);
     i = i + 1;
-  });
+
+    // Check who wins
+    if (
+      (button0.textContent === "X" && button1.textContent === "X" && button2.textContent === "X") ||
+      (button3.textContent === "X" && button4.textContent === "X" && button5.textContent === "X") ||
+      (button6.textContent === "X" && button7.textContent === "X" && button8.textContent === "X") ||
+      (button0.textContent === "X" && button3.textContent === "X" && button6.textContent === "X") ||
+      (button1.textContent === "X" && button4.textContent === "X" && button7.textContent === "X") ||
+      (button2.textContent === "X" && button5.textContent === "X" && button8.textContent === "X") ||
+      (button0.textContent === "X" && button4.textContent === "X" && button8.textContent === "X") ||
+      (button2.textContent === "X" && button4.textContent === "X" && button6.textContent === "X")
+      )
+        {
+          alert (player1_name.value + " wins!")
+        }
+    
+      else if (
+        (button0.textContent === "O" && button1.textContent === "O" && button2.textContent === "O") ||
+        (button3.textContent === "O" && button4.textContent === "O" && button5.textContent === "O") ||
+        (button6.textContent === "O" && button7.textContent === "O" && button8.textContent === "O") ||
+        (button0.textContent === "O" && button3.textContent === "O" && button6.textContent === "O") ||
+        (button1.textContent === "O" && button4.textContent === "O" && button7.textContent === "O") ||
+        (button2.textContent === "O" && button5.textContent === "O" && button8.textContent === "O") ||
+        (button0.textContent === "O" && button4.textContent === "O" && button8.textContent === "O") ||
+        (button2.textContent === "O" && button4.textContent === "O" && button6.textContent === "O")
+      )
+        {
+          alert (player2_name.value + " wins!")
+        }
+
+        else if (
+          button0.textContent != "" &&
+          button1.textContent != "" &&
+          button2.textContent != "" &&
+          button3.textContent != "" &&
+          button4.textContent != "" &&
+          button5.textContent != "" &&
+          button6.textContent != "" &&
+          button7.textContent != "" &&
+          button8.textContent != "" 
+        ) {
+      alert("It's a tie!");}
+    });
 }
+
