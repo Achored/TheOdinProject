@@ -91,6 +91,27 @@ h2 {
   background-color: #eee;
 }
 
+.optionbtns {
+  display:wrap;
+  margin:7px auto;
+  padding: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  background-color: #3b97d3;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.optionbtns:hover {
+  background-color: #eee;
+}
+
 .row1 button {
   border-bottom: none;
 }

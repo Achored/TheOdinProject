@@ -21,7 +21,7 @@ var start = document.getElementById("start");
 
 // Tic tac toe div
 var game =document.getElementById("game");
-var buttons = game.getElementsByTagName("button");
+var buttons = game.getElementsByClassName("playb");
 
 // Tic tac toe buttons
 var button0 = document.getElementById("button0");
@@ -34,7 +34,44 @@ var button6 = document.getElementById("button6");
 var button7 = document.getElementById("button7");
 var button8 = document.getElementById("button8");
 
+// Option (New Game/Restart) Buttons
+
+var restart = document.getElementById("restart");
+var newgame = document.getElementById("newgame");
+
+
+// Sets a global variable for game buttons to check turns. 
+
 let i = 0;
+let playing = 1;
+
+
+// Function to disable buttons after the match has been decided. 
+
+disableBtns = () => {
+  button0.disabled = true;
+  button1.disabled = true;
+  button2.disabled = true;
+  button3.disabled = true;
+  button4.disabled = true;
+  button5.disabled = true;
+  button6.disabled = true;
+  button7.disabled = true;
+  button8.disabled = true;
+}
+
+enableBtns = () => {
+  button0.disabled = false;
+  button1.disabled = false;
+  button2.disabled = false;
+  button3.disabled = false;
+  button4.disabled = false;
+  button5.disabled = false;
+  button6.disabled = false;
+  button7.disabled = false;
+  button8.disabled = false;
+}
+
 
 // Functions to hide and show a Player 1 or Player 2 div
 show = (show) => {
@@ -94,6 +131,51 @@ back.addEventListener("click", function(event){
 });
 
 
+// Restarts the game and clears the buttons. If player 1 restarts the game, player 2 wins and vice versa. 
+
+restart.addEventListener("click", function(event) {
+  button0.textContent = "";
+  button1.textContent = "";
+  button2.textContent = "";
+  button3.textContent = "";
+  button4.textContent = "";
+  button5.textContent = "";
+  button6.textContent = "";
+  button7.textContent = "";
+  button8.textContent = "";
+
+  if (playing === 1) {
+
+    if (i % 2 === 0)
+    {
+      alert(player2_name.value + " wins by default!");
+      i = 0;
+    } 
+    else {
+      alert(player1_name.value + " wins by default!");
+      i = 0;
+    }
+  }
+  else {
+    enableBtns();
+    i = 0;
+  }
+})
+
+// Initiates a new game
+
+newgame.addEventListener("click", function(event){
+  player1_name.value = "";
+  player2_name.value = "";
+  show(players);
+  show(player1);
+  hide(player2);
+  hide(game);
+
+})
+
+// Function that checks the turn (X or O) based on how many clicks were initiated. 
+
 checkTurn = (button) => {
   if  (i % 2 === 0) {
     button.textContent = "X";
@@ -103,6 +185,8 @@ checkTurn = (button) => {
   }
 }
 
+
+// Function that checks if the button already has a value of X or O. 
 ifClicked = (button) => {
   if (button.textContent == "X" || button.textContent == "O") {
     alert("Button already clicked. Choose another one.");
@@ -112,6 +196,14 @@ ifClicked = (button) => {
    
   }
 }
+
+// Function 
+randomNum = () => {
+  return Math.floor(Math.random() * 9);
+}
+
+
+//
 
 for (let j = 0; j < buttons.length; j++) {
   buttons[j].addEventListener("click", function() {
@@ -131,9 +223,12 @@ for (let j = 0; j < buttons.length; j++) {
       )
         {
           alert (player1_name.value + " wins!")
+          disableBtns();
+          playing = 0;
+
         }
     
-      else if (
+    else if (
         (button0.textContent === "O" && button1.textContent === "O" && button2.textContent === "O") ||
         (button3.textContent === "O" && button4.textContent === "O" && button5.textContent === "O") ||
         (button6.textContent === "O" && button7.textContent === "O" && button8.textContent === "O") ||
@@ -145,9 +240,11 @@ for (let j = 0; j < buttons.length; j++) {
       )
         {
           alert (player2_name.value + " wins!")
+          disableBtns();
+          playing = 0;
         }
 
-        else if (
+      else if (
           button0.textContent != "" &&
           button1.textContent != "" &&
           button2.textContent != "" &&
@@ -156,9 +253,29 @@ for (let j = 0; j < buttons.length; j++) {
           button5.textContent != "" &&
           button6.textContent != "" &&
           button7.textContent != "" &&
-          button8.textContent != "" 
+          button8.textContent != ""
         ) {
-      alert("It's a tie!");}
+      alert("It's a tie!");
+      disableBtns();
+      playing = 0;
+    }
     });
-}
+  }
 
+
+  function randomNum() {
+    if (!randomNum.numbers) {
+      randomNum.numbers = Array.from(Array(9).keys()); // create an array [0, 1, 2, ..., 8]
+      randomNum.currentIndex = randomNum.numbers.length;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * randomNum.currentIndex);
+    const randomNum = randomNum.numbers[randomIndex];
+    randomNum.currentIndex--;
+    
+    // swap the chosen element with the last element to remove it from the list
+    [randomNum.numbers[randomIndex], randomNum.numbers[randomNum.currentIndex]] =
+      [randomNum.numbers[randomNum.currentIndex], randomNum.numbers[randomIndex]];
+    
+    return randomNum;
+  }
