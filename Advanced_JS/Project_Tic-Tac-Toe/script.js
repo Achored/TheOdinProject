@@ -279,3 +279,4 @@ for (let j = 0; j < buttons.length; j++) {
     
     return randomNum;
   }
+  1
